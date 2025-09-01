@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+from dotenv import load_dotenv
+load_dotenv(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+from dotenv import load_dotenv
+load_dotenv(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +30,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*zc*m1ct$io&-(6qcd&z!44e3ll&3afsm0()0l&rha@48ok_2p'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-default-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'news_app_db',          # Database name
         'USER': 'news_app_user',        # Database user
-        'PASSWORD': 'your_secure_password',  # User password
+    'PASSWORD': os.environ.get('DB_PASSWORD', ''),  # User password
         'HOST': 'localhost',
         'PORT': '3306',                 # Default MySQL port
         'OPTIONS': {
@@ -150,11 +157,11 @@ REST_FRAMEWORK = {
 }
 
 # Twitter API Configuration
-TWITTER_API_KEY = 'G0TTYLikl7r4kisogDGJ32Ure'
-TWITTER_API_SECRET = 'yBgq9MjwrNOJL0Ne34UiIDbonARzGmPEpB1r1g8oxTsWrLzFQT'
-TWITTER_ACCESS_TOKEN = '1950871179046129665-f1B0jT2YqprcRsRU5QlLEMXuXOGF4i'
-TWITTER_ACCESS_TOKEN_SECRET = 'F9t09YjOugvV8hmNPaULu40YQF7hMOvNhpkvFo0a8wNC8'
-TWITTER_BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAGhe3QEAAAAAF7TfxxW6m4eMafm7u7ddOtx%2BJyQ%3D8GQDEmfC1c5Wvgo2qDHE2Grsgfr7y9TzvuQf4N03a4XIvTpIk5'
+TWITTER_API_KEY = os.environ.get('TWITTER_API_KEY', '')
+TWITTER_API_SECRET = os.environ.get('TWITTER_API_SECRET', '')
+TWITTER_ACCESS_TOKEN = os.environ.get('TWITTER_ACCESS_TOKEN', '')
+TWITTER_ACCESS_TOKEN_SECRET = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET', '')
+TWITTER_BEARER_TOKEN = os.environ.get('TWITTER_BEARER_TOKEN', '')
 
 # For Email (console backend for development)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For console output during development
