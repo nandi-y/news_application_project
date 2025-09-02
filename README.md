@@ -9,7 +9,7 @@
     ```
 2. **Create and activate a virtual environment:**
     ```powershell
-    python -m venv .venv
+    python -m venv venv
     .venv\Scripts\activate
     ```
 3. **Install dependencies:**
