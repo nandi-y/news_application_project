@@ -4,7 +4,7 @@
 
 1. **Clone the repository:**
     ```powershell
-    git clone https://github.com/nandi-y/news_application_project.git
+    git clone https://github.com/nandi-y/news_application_project
     cd news_application_project
     ```
 2. **Create and activate a virtual environment:**
@@ -75,7 +75,7 @@ A Django-based news platform for readers, journalists, and editors. Readers can 
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/news-application-project.git
+    git clone https://github.com/yourusername/news-application-project
     cd news_application_project
     ```
 
