@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'news_app_db',          # Database name
         'USER': 'news_app_user',        # Database user
     'PASSWORD': os.environ.get('DB_PASSWORD', ''),  # User password
-        'HOST': 'localhost',
+    'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': '3306',                 # Default MySQL port
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",

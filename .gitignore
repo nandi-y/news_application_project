@@ -65,8 +65,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Sphinx documentation
-/docs/_build/
+## Sphinx documentation
+# Do not ignore docs folder or its contents
 
 # Ignore secrets
 *.env

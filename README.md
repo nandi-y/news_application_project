@@ -4,7 +4,7 @@
 
 1. **Clone the repository:**
     ```powershell
-    git clone <your-repo-url>
+    git clone https://github.com/nandi-y/news_application_project.git
     cd news_application_project
     ```
 2. **Create and activate a virtual environment:**
@@ -32,19 +32,23 @@
 
 ---
 
-## Setup & Run with Docker
+## Setup & Run with Docker Compose
 
-1. **Build the Docker image:**
+1. **Create a `.env` file** in the project root with your secrets (see above).
+
+2. **Start the app and database together:**
     ```powershell
-    docker build -t news-app .
+    docker-compose up --build
     ```
-2. **Run the container:**
+    This will build and start both the Django app and MariaDB database.
+
+3. **Access the app:**
+    - Open your browser to `http://localhost:8000` (or the provided port in Docker Playground).
+
+4. **Stop the stack:**
     ```powershell
-    docker run -d -p 8000:8000 --env-file .env news-app
+    docker-compose down
     ```
-3. **Configure secrets:**
-    - Add your `.env` file to the project root (see above).
-    - **Do NOT commit secrets to the repository.**
 
 ---
 
