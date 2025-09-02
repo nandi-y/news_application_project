@@ -19,7 +19,7 @@
 4. **Configure secrets:**
     - Create a `.env` file in the project root for sensitive info (e.g., passwords, tokens).
     - **Do NOT commit secrets to the repository.**
-    - Example:
+    - Example
       ```env
       SECRET_KEY=your_secret_key
       DB_PASSWORD=your_db_password
