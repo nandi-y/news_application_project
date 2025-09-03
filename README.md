@@ -132,6 +132,13 @@ Run all tests:
 python manage.py test
 ```
 
+**Note:**
+If you see a database error like:
+```
+Got an error creating the test database: (1044, "Access denied for user 'news_app_user'@'localhost' to database 'test_news_app_db'")
+```
+This is a local database permissions issue and does not affect the code, documentation, or Docker setup.
+
 ## License
 
 MIT License
