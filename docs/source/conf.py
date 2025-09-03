@@ -6,6 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import os
+import sys
+import django
+
 project = 'News Application Project'
 copyright = '2025, NandiGY'
 author = 'NandiGY'
@@ -18,17 +22,12 @@ extensions = [
 	'sphinx.ext.napoleon',
 ]
 # Django project setup for Sphinx autodoc
-import os
-import sys
-import django
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'news_application_project.settings'
 django.setup()
 
 templates_path = ['_templates']
 exclude_patterns = []
-
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
