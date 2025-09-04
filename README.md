@@ -1,124 +1,51 @@
 # News Application Project
 
-A Django-based news platform for readers, journalists, and editors. Readers can subscribe to publishers or journalists, receive notifications, and access approved articles. Journalists and editors manage content and workflow.
+## Setup & Installation
 
-## Features
+### Using Python Virtual Environment (venv)
+1. Clone the repository:
+   ```
+   git clone <your-repo-url>
+   cd <repo-folder>
+   ```
+2. Create and activate a virtual environment:
+   ```
+   python -m venv venv
+   venv\Scripts\activate  # Windows
+   source venv/bin/activate  # Mac/Linux
+   ```
+3. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+4. Run migrations and start the server:
+   ```
+   python manage.py migrate
+   python manage.py runserver
+   ```
 
-- **User Roles:** Reader, Journalist, Editor (with role-based permissions)
-- **Article Management:** Create, update, delete, and approve articles
-- **Approval Workflow:** Editors review and approve submitted articles
-- **Subscriptions:** Readers subscribe to publishers/journalists
-- **Notifications:** Email alerts for new published articles
-- **RESTful API:** Retrieve articles and newsletters via API
-- **Twitter Integration:** Auto-post published articles to Twitter (requires API keys)
-- **Unit Testing:** Comprehensive test suite for models, views, and APIs
+### Using Docker
+1. Build the Docker image:
+   ```
+   docker build -t news-app .
+   ```
+2. Run the container:
+   ```
+   docker run -p 8000:8000 news-app
+   ```
 
-## Installation
+## Sensitive Information
+- **Do NOT commit secrets (passwords, tokens, etc.) to the repository.**
+- Add your secrets to a `.env` file (not tracked by git) and configure your Django settings to read from it.
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/yourusername/news-application-project.git
-    cd news_application_project
-    ```
+## Documentation
+- User and API documentation is available in `docs/build/html/index.html`.
 
-2. **Create and activate a virtual environment:**
-    ```bash
-    python -m venv venv
-    venv\Scripts\activate  # On Windows
-    ```
-
-3. **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Configure the database:**
-    - Create a MariaDB database.
-    - Update `DATABASES` in `news_application_project/settings.py` with your credentials.
-
-5. **Run migrations:**
-    ```bash
-    python manage.py migrate
-    ```
-
-6. **Create a superuser:**
-    ```bash
-    python manage.py createsuperuser
-    ```
-
-7. **Start the development server:**
-    ```bash
-    python manage.py runserver
-    ```
-
-## API Usage
-
-### Articles API
-
-- **Endpoint:** `/api/articles/`
-- **Method:** `GET`
-- **Parameters:** `publisher_id`, `journalist_id`
-- **Authentication:** Required
-
-### Newsletters API
-
-- **Endpoint:** `/api/newsletters/`
-- **Method:** `GET`
-- **Parameters:** `publisher_id`, `journalist_id`
-- **Authentication:** Required
-
-## Testing
-
-Run all tests:
-```bash
-python manage.py test
-```
-
-## License
-
-MIT License
+## Troubleshooting
+- If documentation is missing, rebuild with:
+  ```
+  python -m sphinx -b html docs/source docs/build/html
+  ```
 
 ---
-
-## Example Edge Case & UI/UX Feedback Tests
-
-Add these to your test files for improved coverage:
-
-````python
-# filepath: c:\Users\NandiGY\OneDrive\Documents\GitHub\NG25040018026-1\Level 2 - Software Engineering\M06T08 – Capstone Project – News Application\news_application_project\news_app\tests\test_views.py
-from django.contrib.messages import get_messages
-
-def test_article_create_permission_denied(self):
-    # Reader should not be able to create articles
-    self.client.login(username='reader1', password='testpass123')
-    response = self.client.get(reverse('article_create'))
-    self.assertEqual(response.status_code, 403)
-
-def test_article_update_permission_denied(self):
-    # Reader should not be able to update articles
-    article = Article.objects.create(title='Test', content='...', publisher=self.publisher, status='draft')
-    article.authors.add(self.journalist)
-    self.client.login(username='reader1', password='testpass123')
-    response = self.client.get(reverse('article_edit', args=[article.slug]))
-    self.assertEqual(response.status_code, 403)
-
-def test_subscription_feedback_message(self):
-    self.client.login(username='reader1', password='testpass123')
-    publisher_id = self.publisher.id
-    response = self.client.post(reverse('manage_subscriptions'), {'action': 'subscribe', 'publisher_id': publisher_id})
-    messages = [m.message for m in get_messages(response.wsgi_request)]
-    self.assertTrue(any('subscribed' in msg.lower() for msg in messages))
-
-def test_api_articles_invalid_params(self):
-    self.client.login(username='reader1', password='testpass123')
-    response = self.client.get(reverse('api_articles'), {'invalid_param': 123})
-    self.assertEqual(response.status_code, 400)
-    self.assertIn('must be provided', response.json().get('detail', ''))
-
-def test_article_approval_workflow(self):
-    self.client.login(username='editor1', password='testpass123')
-    article = Article.objects.create(title='To Approve', content='...', publisher=self.publisher, status='submitted')
-    response = self.client.post(reverse('approval_list'), {'article_id': article.id, 'action': 'approve'})
-    article.refresh_from_db()
-    self.assertEqual(article.status, 'published')
-    self.assertEqual(article.approved_by, self.editor)
+For further help, contact the maintainer or book a mentor call.
