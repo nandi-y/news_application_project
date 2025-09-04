@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 
 
 class CustomUserRegistrationForm(UserCreationForm):
-    """Form for registering a new user with extended fields and validation."""
     ROLE_CHOICES = (
         ('reader', 'Reader'),
         ('journalist', 'Journalist'),
@@ -39,7 +38,7 @@ class CustomUserRegistrationForm(UserCreationForm):
 
 
 class ArticleForm(forms.ModelForm):
-    """Form for creating or editing articles with custom validation and widgets."""
+    """Enhanced article creation/editing form"""
     
     class Meta:
         model = Article

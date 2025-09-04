@@ -20,14 +20,12 @@ from news_app.forms import CustomUserRegistrationForm
 
 
 def search(request):
-    """Search for articles by title using a query string from GET parameters."""
     query = request.GET.get('q')
     results = Article.objects.filter(title__icontains=query) if query else []
     return render(request, 'news_app/search_results.html', {'results': results, 'query': query})
 
 # Registration view
 def register(request):
-    """Handle user registration via POST; display registration form on GET."""
     if request.method == 'POST':
         form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
@@ -49,7 +47,6 @@ def register(request):
 
 
 class ArticleListView(ListView):
-    """Display a list of articles, filtered by user role if authenticated."""
     model = Article
     template_name = 'news_app/article_list.html'
     context_object_name = 'articles'
@@ -218,7 +215,6 @@ def manage_subscriptions(request):
 
 
 class ArticleAPIView(APIView):
-    """API endpoint for retrieving published articles, filtered by publisher or journalist."""
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -239,7 +235,6 @@ class ArticleAPIView(APIView):
 
 
 class NewsletterAPIView(APIView):
-    """API endpoint for retrieving newsletters, filtered by publisher or journalist."""
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

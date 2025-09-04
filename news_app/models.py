@@ -15,7 +15,6 @@ import uuid
 
 
 class CustomUser(AbstractUser):
-    """Custom user model with extended fields and role-based logic."""
     ROLE_CHOICES = (
         ('reader', 'Reader'),
         ('journalist', 'Journalist'),
@@ -95,7 +94,7 @@ class CustomUser(AbstractUser):
 
 
 class Category(models.Model):
-    """Model representing news categories for better organization."""
+    """News categories for better organization"""
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField(blank=True)
