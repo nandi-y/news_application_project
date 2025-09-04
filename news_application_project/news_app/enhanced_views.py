@@ -24,7 +24,9 @@ import json
 from datetime import datetime, timedelta
 
 class EnhancedArticleListView(ListView):
-    """Enhanced article list with filtering, search, and pagination"""
+    """
+    Enhanced article list view for displaying articles with filtering, search, and pagination.
+    """
     model = Article
     template_name = 'news_app/enhanced_article_list.html'
     context_object_name = 'articles'
@@ -120,6 +122,9 @@ class EnhancedArticleDetailView(DetailView):
     slug_url_kwarg = 'slug'
 
     def get_queryset(self):
+        """
+        Returns a queryset of articles filtered by search, category, and sorted by published date.
+        """
         return Article.objects.select_related('publisher', 'category').prefetch_related(
             'authors', 'comments__author', 'likes__user'
         )
@@ -182,7 +187,9 @@ class EnhancedArticleDetailView(DetailView):
 
 @login_required
 def like_article(request, slug):
-    """AJAX view to like/unlike articles"""
+    """
+    Handles AJAX requests to like or unlike an article specified by slug.
+    """
     if request.method == 'POST':
         article = get_object_or_404(Article, slug=slug)
         like, created = ArticleLike.objects.get_or_create(
