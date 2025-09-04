@@ -79,4 +79,4 @@ python manage.py test
 MIT License
 
 ---
-For further help, contact the maintainer or book a mentor call.
+
