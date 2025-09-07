@@ -38,6 +38,32 @@ media/
 staticfiles/
 
 # Database
+db.sqlite3
+.env
+*.env
+*.bak
+*.db
+*.sqlite3
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.~
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pot
+*.py[cod]
+*$py.class
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
 *.sqlite3
 
 # VS Code
